@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    container_name: "api-best-pratices"
+    command: npm start
+    ports:
+      - "3000:3000"
+    networks:
+      - overlay
+    depends_on:
+      - db
+    volumes:
+      - .:/usr/app
+  db:
+    image: postgres
+    container_name: pg-docker
+    ports:
+       - "5400:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./data:/var/lib/postgresql/data
+networks:
+  overlay:  
