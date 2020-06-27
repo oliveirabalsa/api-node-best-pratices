@@ -6,7 +6,7 @@ services:
     container_name: "api-best-pratices"
     command: npm start
     ports:
-      - "3333:3333"
+      - "3000:3000"
     networks:
       - overlay
     depends_on:
@@ -19,9 +19,8 @@ services:
     ports:
        - "5432:5432"
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - DB_HOST=127.0.0.1
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
     volumes:
       - ./data:/var/lib/postgresql/data
 networks:
