@@ -1,9 +1,8 @@
-const express = require('express')
+/* eslint-disable no-console */
+const app = require('./app');
 
-const app = express();
+const PORT = 3333;
 
-app.get('/', (req, res) => {
-    res.send('HELLO DOCKER!!')
-})
+app.listen(PORT);
 
-app.listen(3000)
+console.log('Server is running on ', PORT);
