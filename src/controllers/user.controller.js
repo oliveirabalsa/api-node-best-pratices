@@ -9,14 +9,50 @@ const {
 // const userService = require('../services/user.service');
 
 class Controller {
-  async list(req, res) {
+  async all(req, res) {
     try {
-      const user = await connection('users').select('*');
+      const users = await connection('users').select('*');
 
-      return res.json(user);
+      return onSuccess(res, users);
     } catch (error) {
       // eslint-disable-next-line no-console
-      res.status(400).json({ message: error.stack });
+      onError(res, error.stack);
+    }
+  }
+
+  async one(req, res) {
+    try {
+      const { id } = req.params;
+      const user = await connection('users').select('*').where('id', id);
+
+      return onSuccess(res, user);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      onError(res, error.stack);
+    }
+  }
+
+  async save(req, res) {
+    try {
+      const request = req.body;
+
+      await connection('users').insert(request);
+
+      return onCreated(res, 'User successfully created');
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      onError(res, error.stack);
+    }
+  }
+
+  async delete(req, res) {
+    try {
+      const { id } = req.params;
+      await connection('users').where('id', id).delete();
+
+      onDeleted(res);
+    } catch (error) {
+      onError(res, error.stack);
     }
   }
 }

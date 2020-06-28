@@ -1,5 +1,1 @@
-module.exports = (ctx, message) => {
-    ctx.status = 200;
-    ctx.body = message;
-    return 
-}
+module.exports = (res, message) => res.status(200).json(message);

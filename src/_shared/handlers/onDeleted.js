@@ -1,3 +1,1 @@
-module.exports = (ctx, message) => {
-  ctx.status = 204;
-};
+module.exports = (res) => res.status(204).send();

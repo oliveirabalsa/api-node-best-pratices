@@ -6,7 +6,9 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "nodemon src/server.js",
-        "start": "node src/server.js"
+        "start": "node src/server.js",
+        "migrate": "npx knex migrate:latest",
+        "make": "npx knex migrate:make"
     },
     "repository": {
         "type": "git",

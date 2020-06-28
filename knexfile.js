@@ -15,8 +15,10 @@ module.exports = {
       max: 10,
     },
     migrations: {
+      directory: './src/_shared/migrations',
       tableName: 'knex_migrations',
     },
+    useNullAsDefault: true,
   },
 
   staging: {
